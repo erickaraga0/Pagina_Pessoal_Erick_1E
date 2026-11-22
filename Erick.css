@@ -1,0 +1,224 @@
+/* ---------- Básico ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --fundo: #f2f4f7;
+    --texto: #1f2933;
+    --azul: #2f6fb5;
+    --azul-escuro: #1d2b3a;
+    --linha: #d5dbe3;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--texto);
+    background-color: var(--fundo);
+}
+
+/* pseudo-elemento: muda a cor ao selecionar um texto */
+::selection {
+    background-color: var(--azul);
+    color: white;
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+    background-color: var(--azul-escuro);
+    color: white;
+    text-align: center;
+    padding: 28px 16px;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
+/* ---------- Conteúdo ---------- */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+section {
+    background-color: white;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--azul-escuro);
+}
+
+/* pseudo-elemento: barrinha azul antes de cada título */
+h2::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 1em;
+    background-color: var(--azul);
+    margin-right: 10px;
+    vertical-align: -0.12em;
+}
+
+/* ---------- Apresentação (flexbox) ---------- */
+.apresentacao {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.apresentacao img {
+    width: 220px;
+    border-radius: 8px;
+}
+
+/* pseudo-elemento: primeira letra do texto maior */
+.resumo::first-letter {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--azul);
+}
+
+/* ---------- Listas ---------- */
+.lista {
+    list-style: none;
+}
+
+.lista li {
+    padding: 8px 10px;
+}
+
+/* pseudo-elemento: marcador personalizado */
+.lista li::before {
+    content: "• ";
+    color: var(--azul);
+    font-weight: bold;
+}
+
+/* pseudo-classe: linhas pares com fundo diferente */
+.lista li:nth-child(even) {
+    background-color: var(--fundo);
+}
+
+/* pseudo-classe: passar o mouse */
+.lista li:hover {
+    background-color: #e3ecf6;
+}
+
+/* ---------- Cards de lugares (flexbox) ---------- */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.card {
+    flex: 1 1 200px;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: var(--azul-escuro);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* pseudo-elemento: seta depois do nome do lugar */
+.card a::after {
+    content: " ›";
+}
+
+/* pseudo-classes: mouse, teclado e clique */
+.card:hover {
+    border-color: var(--azul);
+}
+
+.card a:hover {
+    color: var(--azul);
+    text-decoration: underline;
+}
+
+.card a:focus {
+    outline: 2px solid var(--azul);
+}
+
+.card a:active {
+    color: var(--azul-escuro);
+}
+
+/* ---------- Botões de navegação (flexbox) ---------- */
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 0 16px 32px;
+}
+
+.botoes img {
+    height: 48px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.botoes a:hover img {
+    transform: scale(1.1);
+}
+
+.botoes a:focus {
+    outline: 2px solid var(--azul);
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 700px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .apresentacao {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .apresentacao img {
+        width: 60%;
+        max-width: 220px;
+    }
+
+    .card {
+        flex-basis: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 14px;
+    }
+
+    .card {
+        flex-basis: 100%;
+    }
+}
